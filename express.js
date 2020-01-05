@@ -7,7 +7,7 @@ const server = app.listen(4000, ()=>
     console.log("listening to request on port 4000"));
 
 //serve files in public folder in browser
-app.use(express.static('public'));
+//app.use(express.static('App'));
 
 //socket setup
 const io = socket(server);
@@ -20,4 +20,5 @@ io.on('connection',(socket)=> {
     socket.on('typing',(data)=>{
         socket.broadcast.emit('typing',data);
     })
+    socket.on("disconnect", () => console.log("Client disconnected " +socket.id));
 });
